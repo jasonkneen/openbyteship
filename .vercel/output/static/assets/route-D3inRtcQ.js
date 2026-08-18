@@ -1,0 +1,1 @@
+import{s as e}from"./link-DF2nwegC.js";import{t}from"./console-shell-CMjbTFLe.js";import{u as n}from"./index-Jlqy-rva.js";var r=e(),i=()=>(0,r.jsx)(t,{children:(0,r.jsx)(n,{})});export{i as component};

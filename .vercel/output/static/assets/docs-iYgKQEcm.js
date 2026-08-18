@@ -1,0 +1,10 @@
+import{s as e,t}from"./link-DF2nwegC.js";import{n,t as r}from"./docs-layout-C4Q1Aa7P.js";import{t as i}from"./code-block-5xfwUllb.js";var a=e();function o(){return(0,a.jsxs)(n,{title:`Overview`,lede:`The short version of how OpenByteShip fits into your app: create uploads, stream files, and deliver them from one API.`,children:[(0,a.jsx)(r,{title:`What it does`,children:(0,a.jsx)(`p`,{children:`OpenByteShip gives every project one place for upload sessions, object storage, delivery URLs, API keys, and usage limits. Your app asks OpenByteShip for an upload, sends bytes directly to storage, then completes the upload so the file can be delivered.`})}),(0,a.jsx)(r,{title:`Model`,children:(0,a.jsxs)(`ul`,{className:`list-disc space-y-2 pl-5`,children:[(0,a.jsxs)(`li`,{children:[(0,a.jsx)(`strong`,{className:`text-fg`,children:`Uploads.`}),` Create a session, upload to the returned URL, then complete it.`]}),(0,a.jsxs)(`li`,{children:[(0,a.jsx)(`strong`,{className:`text-fg`,children:`Files.`}),` Store public and private files with stable file paths and metadata.`]}),(0,a.jsxs)(`li`,{children:[(0,a.jsx)(`strong`,{className:`text-fg`,children:`Delivery.`}),` Public files get stable delivery URLs; private files use signed URLs.`]})]})}),(0,a.jsxs)(r,{title:`Quick start`,children:[(0,a.jsxs)(`p`,{children:[`Sign in to the `,(0,a.jsx)(t,{to:`/console`,className:`text-fg underline underline-offset-4`,children:`console`}),`, create a project, mint an API key with `,(0,a.jsx)(`code`,{className:`text-fg`,children:`files:write`}),`, then upload:`]}),(0,a.jsx)(i,{label:`ts`,code:`import { OpenByteShipClient } from "@openbyteship/js"
+
+const obs = new OpenByteShipClient({
+  apiKey: process.env.OPENBYTESHIP_API_KEY!,
+})
+
+const uploaded = await obs.upload(file, {
+  path: "avatars/me.jpg",
+  visibility: "public",
+})`})]})]})}export{o as component};
