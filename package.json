@@ -1,6 +1,8 @@
 {
-  "name": "app-builder-workspace",
+  "name": "openbyteship",
   "private": true,
+  "license": "MIT",
+  "description": "Open-source file uploads, signed URLs, and CDN delivery.",
   "sideEffects": false,
   "type": "module",
   "overrides": {

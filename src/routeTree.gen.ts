@@ -33,11 +33,13 @@ import { Route as ConsoleProjectIdActivityRouteImport } from './routes/console/$
 import { Route as ConsoleProjectIdFilesRouteImport } from './routes/console/$projectId/files'
 import { Route as ConsoleProjectIdKeysRouteImport } from './routes/console/$projectId/keys'
 import { Route as ConsoleProjectIdPlaygroundRouteImport } from './routes/console/$projectId/playground'
+import { Route as ConsoleProjectIdSettingsRouteRouteImport } from './routes/console/$projectId/settings/route'
 import { Route as ConsoleProjectIdSettingsRouteImport } from './routes/console/$projectId/settings'
 import { Route as ConsoleProjectIdWebhooksRouteImport } from './routes/console/$projectId/webhooks'
 import { Route as FNamespaceSplatRouteImport } from './routes/f/$namespace/$'
 import { Route as V1FilesSplatRouteImport } from './routes/v1/files/$'
 import { Route as V1UploadsUploadIdRouteImport } from './routes/v1/uploads/$uploadId'
+import { Route as ConsoleProjectIdSettingsIndexRouteImport } from './routes/console/$projectId/settings/index'
 import { Route as ConsoleProjectIdWebhooksWebhookIdRouteImport } from './routes/console/$projectId/webhooks/$webhookId'
 
 const IndexRoute = IndexRouteImport.update({
@@ -162,6 +164,12 @@ const ConsoleProjectIdPlaygroundRoute =
     path: '/playground',
     getParentRoute: () => ConsoleProjectIdRouteRoute,
   } as any)
+const ConsoleProjectIdSettingsRouteRoute =
+  ConsoleProjectIdSettingsRouteRouteImport.update({
+    id: '/settings',
+    path: '/settings',
+    getParentRoute: () => ConsoleProjectIdRouteRoute,
+  } as any)
 const ConsoleProjectIdSettingsRoute =
   ConsoleProjectIdSettingsRouteImport.update({
     id: '/settings',
@@ -189,6 +197,12 @@ const V1UploadsUploadIdRoute = V1UploadsUploadIdRouteImport.update({
   path: '/v1/uploads/$uploadId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ConsoleProjectIdSettingsIndexRoute =
+  ConsoleProjectIdSettingsIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => ConsoleProjectIdSettingsRoute,
+  } as any)
 const ConsoleProjectIdWebhooksWebhookIdRoute =
   ConsoleProjectIdWebhooksWebhookIdRouteImport.update({
     id: '/$webhookId',
@@ -215,18 +229,19 @@ export interface FileRoutesByFullPath {
   '/v1/upload-tokens': typeof V1UploadTokensRoute
   '/console/': typeof ConsoleIndexRoute
   '/docs/': typeof DocsIndexRoute
+  '/console/$projectId/settings': typeof ConsoleProjectIdSettingsRouteWithChildren
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/console/$projectId/activity': typeof ConsoleProjectIdActivityRoute
   '/console/$projectId/files': typeof ConsoleProjectIdFilesRoute
   '/console/$projectId/keys': typeof ConsoleProjectIdKeysRoute
   '/console/$projectId/playground': typeof ConsoleProjectIdPlaygroundRoute
-  '/console/$projectId/settings': typeof ConsoleProjectIdSettingsRoute
   '/console/$projectId/webhooks': typeof ConsoleProjectIdWebhooksRouteWithChildren
   '/f/$namespace/$': typeof FNamespaceSplatRoute
   '/v1/files/$': typeof V1FilesSplatRoute
   '/v1/uploads/$uploadId': typeof V1UploadsUploadIdRoute
   '/console/$projectId/': typeof ConsoleProjectIdIndexRoute
   '/console/$projectId/webhooks/$webhookId': typeof ConsoleProjectIdWebhooksWebhookIdRoute
+  '/console/$projectId/settings/': typeof ConsoleProjectIdSettingsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -245,12 +260,12 @@ export interface FileRoutesByTo {
   '/v1/upload-tokens': typeof V1UploadTokensRoute
   '/console': typeof ConsoleIndexRoute
   '/docs': typeof DocsIndexRoute
+  '/console/$projectId/settings': typeof ConsoleProjectIdSettingsIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/console/$projectId/activity': typeof ConsoleProjectIdActivityRoute
   '/console/$projectId/files': typeof ConsoleProjectIdFilesRoute
   '/console/$projectId/keys': typeof ConsoleProjectIdKeysRoute
   '/console/$projectId/playground': typeof ConsoleProjectIdPlaygroundRoute
-  '/console/$projectId/settings': typeof ConsoleProjectIdSettingsRoute
   '/console/$projectId/webhooks': typeof ConsoleProjectIdWebhooksRouteWithChildren
   '/f/$namespace/$': typeof FNamespaceSplatRoute
   '/v1/files/$': typeof V1FilesSplatRoute
@@ -278,18 +293,19 @@ export interface FileRoutesById {
   '/v1/upload-tokens': typeof V1UploadTokensRoute
   '/console/': typeof ConsoleIndexRoute
   '/docs/': typeof DocsIndexRoute
+  '/console/$projectId/settings': typeof ConsoleProjectIdSettingsRouteWithChildren
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/console/$projectId/activity': typeof ConsoleProjectIdActivityRoute
   '/console/$projectId/files': typeof ConsoleProjectIdFilesRoute
   '/console/$projectId/keys': typeof ConsoleProjectIdKeysRoute
   '/console/$projectId/playground': typeof ConsoleProjectIdPlaygroundRoute
-  '/console/$projectId/settings': typeof ConsoleProjectIdSettingsRoute
   '/console/$projectId/webhooks': typeof ConsoleProjectIdWebhooksRouteWithChildren
   '/f/$namespace/$': typeof FNamespaceSplatRoute
   '/v1/files/$': typeof V1FilesSplatRoute
   '/v1/uploads/$uploadId': typeof V1UploadsUploadIdRoute
   '/console/$projectId/': typeof ConsoleProjectIdIndexRoute
   '/console/$projectId/webhooks/$webhookId': typeof ConsoleProjectIdWebhooksWebhookIdRoute
+  '/console/$projectId/settings/': typeof ConsoleProjectIdSettingsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -312,18 +328,19 @@ export interface FileRouteTypes {
     | '/v1/upload-tokens'
     | '/console/'
     | '/docs/'
+    | '/console/$projectId/settings'
     | '/api/auth/$'
     | '/console/$projectId/activity'
     | '/console/$projectId/files'
     | '/console/$projectId/keys'
     | '/console/$projectId/playground'
-    | '/console/$projectId/settings'
     | '/console/$projectId/webhooks'
     | '/f/$namespace/$'
     | '/v1/files/$'
     | '/v1/uploads/$uploadId'
     | '/console/$projectId/'
     | '/console/$projectId/webhooks/$webhookId'
+    | '/console/$projectId/settings/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -342,12 +359,12 @@ export interface FileRouteTypes {
     | '/v1/upload-tokens'
     | '/console'
     | '/docs'
+    | '/console/$projectId/settings'
     | '/api/auth/$'
     | '/console/$projectId/activity'
     | '/console/$projectId/files'
     | '/console/$projectId/keys'
     | '/console/$projectId/playground'
-    | '/console/$projectId/settings'
     | '/console/$projectId/webhooks'
     | '/f/$namespace/$'
     | '/v1/files/$'
@@ -374,18 +391,19 @@ export interface FileRouteTypes {
     | '/v1/upload-tokens'
     | '/console/'
     | '/docs/'
+    | '/console/$projectId/settings'
     | '/api/auth/$'
     | '/console/$projectId/activity'
     | '/console/$projectId/files'
     | '/console/$projectId/keys'
     | '/console/$projectId/playground'
-    | '/console/$projectId/settings'
     | '/console/$projectId/webhooks'
     | '/f/$namespace/$'
     | '/v1/files/$'
     | '/v1/uploads/$uploadId'
     | '/console/$projectId/'
     | '/console/$projectId/webhooks/$webhookId'
+    | '/console/$projectId/settings/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -585,6 +603,13 @@ declare module '@tanstack/react-router' {
       id: '/console/$projectId/settings'
       path: '/settings'
       fullPath: '/console/$projectId/settings'
+      preLoaderRoute: typeof ConsoleProjectIdSettingsRouteRouteImport
+      parentRoute: typeof ConsoleProjectIdRouteRoute
+    }
+    '/console/$projectId/settings': {
+      id: '/console/$projectId/settings'
+      path: '/settings'
+      fullPath: '/console/$projectId/settings'
       preLoaderRoute: typeof ConsoleProjectIdSettingsRouteImport
       parentRoute: typeof ConsoleProjectIdRouteRoute
     }
@@ -616,6 +641,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof V1UploadsUploadIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/console/$projectId/settings/': {
+      id: '/console/$projectId/settings/'
+      path: '/'
+      fullPath: '/console/$projectId/settings/'
+      preLoaderRoute: typeof ConsoleProjectIdSettingsIndexRouteImport
+      parentRoute: typeof ConsoleProjectIdSettingsRoute
+    }
     '/console/$projectId/webhooks/$webhookId': {
       id: '/console/$projectId/webhooks/$webhookId'
       path: '/$webhookId'
@@ -625,6 +657,20 @@ declare module '@tanstack/react-router' {
     }
   }
 }
+
+interface ConsoleProjectIdSettingsRouteChildren {
+  ConsoleProjectIdSettingsIndexRoute: typeof ConsoleProjectIdSettingsIndexRoute
+}
+
+const ConsoleProjectIdSettingsRouteChildren: ConsoleProjectIdSettingsRouteChildren =
+  {
+    ConsoleProjectIdSettingsIndexRoute: ConsoleProjectIdSettingsIndexRoute,
+  }
+
+const ConsoleProjectIdSettingsRouteWithChildren =
+  ConsoleProjectIdSettingsRoute._addFileChildren(
+    ConsoleProjectIdSettingsRouteChildren,
+  )
 
 interface ConsoleProjectIdWebhooksRouteChildren {
   ConsoleProjectIdWebhooksWebhookIdRoute: typeof ConsoleProjectIdWebhooksWebhookIdRoute
@@ -642,21 +688,23 @@ const ConsoleProjectIdWebhooksRouteWithChildren =
   )
 
 interface ConsoleProjectIdRouteRouteChildren {
+  ConsoleProjectIdSettingsRouteRoute: typeof ConsoleProjectIdSettingsRouteRoute
   ConsoleProjectIdActivityRoute: typeof ConsoleProjectIdActivityRoute
   ConsoleProjectIdFilesRoute: typeof ConsoleProjectIdFilesRoute
   ConsoleProjectIdKeysRoute: typeof ConsoleProjectIdKeysRoute
   ConsoleProjectIdPlaygroundRoute: typeof ConsoleProjectIdPlaygroundRoute
-  ConsoleProjectIdSettingsRoute: typeof ConsoleProjectIdSettingsRoute
+  ConsoleProjectIdSettingsRoute: typeof ConsoleProjectIdSettingsRouteWithChildren
   ConsoleProjectIdWebhooksRoute: typeof ConsoleProjectIdWebhooksRouteWithChildren
   ConsoleProjectIdIndexRoute: typeof ConsoleProjectIdIndexRoute
 }
 
 const ConsoleProjectIdRouteRouteChildren: ConsoleProjectIdRouteRouteChildren = {
+  ConsoleProjectIdSettingsRouteRoute: ConsoleProjectIdSettingsRouteRoute,
   ConsoleProjectIdActivityRoute: ConsoleProjectIdActivityRoute,
   ConsoleProjectIdFilesRoute: ConsoleProjectIdFilesRoute,
   ConsoleProjectIdKeysRoute: ConsoleProjectIdKeysRoute,
   ConsoleProjectIdPlaygroundRoute: ConsoleProjectIdPlaygroundRoute,
-  ConsoleProjectIdSettingsRoute: ConsoleProjectIdSettingsRoute,
+  ConsoleProjectIdSettingsRoute: ConsoleProjectIdSettingsRouteWithChildren,
   ConsoleProjectIdWebhooksRoute: ConsoleProjectIdWebhooksRouteWithChildren,
   ConsoleProjectIdIndexRoute: ConsoleProjectIdIndexRoute,
 }
